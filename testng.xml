@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<suite allow-return-values="false" configfailurepolicy="skip"
+	data-provider-thread-count="10" group-by-instances="false" guice-stage="DEVELOPMENT"
+	junit="false" name="SwaggerTestSuite" parallel="false"
+	preserve-order="true" skipfailedinvocationcounts="false" thread-count="5">
+	<test allow-return-values="false" group-by-instances="false"
+		junit="false" name="SwaggerTests" preserve-order="true"
+		skipfailedinvocationcounts="false">
+		<parameter name="swaggerPath"
+			value="http://petstore.swagger.io/v2/swagger.json" />
+		<classes>
+			<class
+				name="com.ibmwatsonhealth.devopsservices.swaggertestasset.TestNGTestSuite" />
+		</classes>
+	</test>
+</suite>

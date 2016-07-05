@@ -10,6 +10,6 @@
         <tcpOptions soReuseAddr="true"/>
     </httpEndpoint>
 
-    <application name="SwaggerParser" context-root="/SwaggerParser/api" location="${appLocation}" type="war"/>
+    <application name="SwaggerParser" context-root="*" location="${appLocation}" type="war"/>
 
 </server>

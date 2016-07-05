@@ -9,7 +9,5 @@
                   httpPort="9080">
         <tcpOptions soReuseAddr="true"/>
     </httpEndpoint>
-
-    <application name="SwaggerParser" context-root="*" location="${appLocation}" type="war"/>
-
+     <webApplication contextRoot="/" id="swaggerautomationservice" location="SwaggerParser-0.0.1-SNAPSHOT.war" name="swaggerautomationservice" />
 </server>

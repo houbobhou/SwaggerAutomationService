@@ -25,7 +25,7 @@ public class TestNGTestSuite {
 
 		Map<Object, Object> map = SwaggerUtility
 		.getSwaggerData(context.getCurrentXmlTest().getParameter("swaggerPath"));
-		//Map<Object, Object> map = SwaggerUtility.getSwaggerData("http://petstore.swagger.io/v2/swagger.json");
+		//Map<Object, Object> map = SwaggerUtility.getSwaggerData("http://169.44.118.61:8080/TomcatWebAppForChefNode/swagger.json");
 		Object[][] arr = new Object[map.size()][2];
 		Set entries = map.entrySet();
 		Iterator entriesIterator = entries.iterator();
@@ -51,13 +51,14 @@ public class TestNGTestSuite {
 			String endpointOperationOutput = endpoint.split(",")[1];
 			Map<Object, Object> dataMap = (Map) obj;
 			dataMap.get("response");
+			String url = dataMap.get("baseURI") + endpointOutput;
 
 			switch (endpointOperationOutput.toLowerCase()) {
 
 			case "get":
 
 				if (TestNGTestSuite.hasPathParameterResolved(endpointOutput)) {
-					Response rep = RestAssured.given().contentType("application/json").when().get(endpointOutput);
+					Response rep = RestAssured.given().contentType("application/json").when().get(url);
 					Assert.assertEquals(rep.getStatusCode(), HttpStatus.SC_OK);
 					
 				} else {
@@ -74,7 +75,7 @@ public class TestNGTestSuite {
 						// Valid data
 						String schema = (String) ((Map) dataMap.get("validdata")).get("schema");
 						String body = (String) ((Map) dataMap.get("validdata")).get("data");
-						String url = dataMap.get("baseURI") + endpointOutput;
+						
 
 						Response rep = RestAssured.given().contentType(schema).when().body(body).post(url);
 						softAssert.assertEquals(rep.getStatusCode(), HttpStatus.SC_OK);
@@ -104,7 +105,7 @@ public class TestNGTestSuite {
 						// Valid data
 						String schema = (String) ((Map) dataMap.get("validdata")).get("schema");
 						String body = (String) ((Map) dataMap.get("validdata")).get("data");
-						String url = dataMap.get("baseURI") + endpointOutput;
+						
 
 						Response rep = RestAssured.given().contentType(schema).when().body(body).put(url);
 						softAssert.assertEquals(rep.getStatusCode(), HttpStatus.SC_OK);
@@ -128,7 +129,7 @@ public class TestNGTestSuite {
 
 			case "delete":
 				if (TestNGTestSuite.hasPathParameterResolved(endpointOutput)) {
-					Response rep = RestAssured.given().contentType("application/json").when().delete(endpointOutput);
+					Response rep = RestAssured.given().contentType("application/json").when().delete(url);
 					Assert.assertEquals(rep.getStatusCode(), HttpStatus.SC_OK);
 					
 				} else {

@@ -10,6 +10,10 @@ public EndpointOperationType(String endpoint, String operation){
 	this.operation = operation;
 }
 
+public EndpointOperationType(){
+	
+}
+
 public String getEndpoint(){
 	return this.endpoint;
 }

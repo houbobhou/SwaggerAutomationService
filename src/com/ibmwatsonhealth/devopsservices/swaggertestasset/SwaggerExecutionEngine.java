@@ -25,6 +25,7 @@ import org.w3c.dom.Node;
 
 public class SwaggerExecutionEngine {
 
+	@SuppressWarnings("deprecation")
 	public TestFrameworkOutput executeTestFramework(String someJsonString) {
 
 		TestFrameworkOutput output = null;
@@ -48,6 +49,9 @@ public class SwaggerExecutionEngine {
 		System.out.println(System.getProperty("user.dir"));
 		myTestNG.setOutputDirectory(System.getProperty("user.dir"));
 		myTestNG.run();
+		//check if the framework has a skip
+		//myTestNG.hasSkip();
+		// if framework had a test skipped 
 
 		try {
 			System.out.println("Start with the swagger output file extraction");
@@ -55,7 +59,11 @@ public class SwaggerExecutionEngine {
 			File file = new File(testframeworkoutputPath);
 			// Set output of test framework here
 			output = new TestFrameworkOutput();
-			output.setResponseCode(myTestNG.getStatus());
+			if(myTestNG.hasSkip()){
+				output.setResponseCode(1);
+			}else{
+				output.setResponseCode(myTestNG.getStatus());
+			}
 			// output.setJunitoutput(junitresult);
 
 		} catch (Exception e) {

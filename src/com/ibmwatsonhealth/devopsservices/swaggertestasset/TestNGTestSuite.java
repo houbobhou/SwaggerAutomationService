@@ -21,12 +21,14 @@ public class TestNGTestSuite {
 
 	@SuppressWarnings("rawtypes")
 	@DataProvider(name = "dbconfig")
-	public Object[][] provideDbConfig(ITestContext context) throws IOException {
+	public Object[][] provideDbConfig(ITestContext context){
 
 		Map<Object, Object> map = SwaggerUtility
 		.getSwaggerData(context.getCurrentXmlTest().getParameter("swaggerPath"));
-		//Map<Object, Object> map = SwaggerUtility.getSwaggerData("http://169.44.118.61:8080/TomcatWebAppForChefNode/swagger.json");
-		Object[][] arr = new Object[map.size()][2];
+		//Map<Object, Object> map = SwaggerUtility.getSwaggerData("http://petstore.swagger.io/v2/swagger.json");
+		Object[][] arr = null;
+		try{
+		arr = new Object[map.size()][2];
 		Set entries = map.entrySet();
 		Iterator entriesIterator = entries.iterator();
 		int i = 0;
@@ -38,6 +40,10 @@ public class TestNGTestSuite {
 			arr[i][1] = mapping.getValue();
 			i++;
 		}
+		}catch(Exception e){
+			Assert.fail("Swagger parser was unsuccessful for the swagger path provided. Cannot start test framework");
+		}
+		
 		return arr;
 	}
 

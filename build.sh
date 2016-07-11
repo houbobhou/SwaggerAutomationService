@@ -16,4 +16,4 @@ NODE_IP=$($IC_COMMAND inspect --format '{{ .NetworkSettings.PublicIpAddress }}' 
 echo $NODE_IP is the IP of the node container
 
 echo ; echo Attempting to SCP
-scp -o StrictHostKeyChecking=no target/TomcatWebAppForChefNode.war vravish@$NODE_IP:~/apache-tomcat-8.0.36/webapps
+scp -o StrictHostKeyChecking=no target/*.war vravish@$NODE_IP:~/apache-tomcat-8.0.36/webapps

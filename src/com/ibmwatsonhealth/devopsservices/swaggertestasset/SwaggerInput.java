@@ -1,8 +1,5 @@
 package com.ibmwatsonhealth.devopsservices.swaggertestasset;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-
 class SwaggerInput {
 
 	private String swaggerURL;

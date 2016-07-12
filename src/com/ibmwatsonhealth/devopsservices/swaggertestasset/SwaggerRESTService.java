@@ -75,7 +75,7 @@ public class SwaggerRESTService {
 	public Response verifyRESTService() {
 
 		//Provide a helper for people to understand how to call the service
-		return Response.status(200).entity("curl -i -H \"Accept:application/xml\" -X POST -d \"swaggerURL\":\"http://petstore.swagger.io/v2/swagger.json\" http://localhost:9086/SwaggerParser/api/swaggerTestService"
+		return Response.status(200).entity("curl -i -H \"Accept:application/xml\" -X POST -d \"swaggerURL\":\"http://petstore.swagger.io/v2/swagger.json\" http://localhost:9080/SwaggerParser/api/swaggerTestService"
 ).build();
 	}
 
